@@ -1,0 +1,31 @@
+service: serverless-s3-lambda
+frameworkVersion: '3'
+org: nelsoncode019
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:getObject
+        - s3:putObject
+        - s3:putBucketPolicy
+        - states:startExecution
+      Resource: "*"
+  region: sa-east-1
+
+functions:
+  loadFile:
+    handler: handler.loadFile
+    events:
+      - s3:
+          bucket: bucket-demo-thiago
+          event: s3:ObjectCreated:*
+          rules:
+            #- prefix: uploads/
+            - suffix: .csv
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline

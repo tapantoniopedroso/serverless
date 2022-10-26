@@ -1,0 +1,23 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+.build/
+coverage
+reports
+results
+
+.vscode/*.log
+.vscode/settings.json
+
+yarn.lock
+package-lock.json
+lib
+coverage
+file:/*
+.webpack
+.DS_Store
+
